@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Funcionários</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        #banner {
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        #main-content {
+            margin: 20px;
+        }
+
+        .highlight-box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        form {
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Banner da Empresa -->
+<img id="banner" src="imagens/Banner.png" alt="Banner da Empresa">
+
+<!-- Conteúdo Principal -->
+<div id="main-content">
+    <!-- Formulário de Cadastro -->
+    <form name="formulario" method="POST" action="CadastroFuncionario" onsubmit="return validarFormulario()">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <br>
+        <label for="cargo">Cargo:</label>
+        <input type="text" id="cargo" name="cargo" required>
+        <br>
+        <label for="descCargo">Descrição do Cargo:</label>
+        <textarea id="descCargo" name="descCargo" cols="30" rows="5" required></textarea>
+        <br>
+        <label for="setor">Setor:</label>
+        <input type="text" id="setor" name="setor" required>
+        <br>
+        <label for="salario">Salário:</label>
+        <input type="text" id="salario" name="salario" required>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+
+
+<script>
+    function validarFormulario() {
+        var nome = document.forms["formulario"]["nome"].value;
+        var cargo = document.forms["formulario"]["cargo"].value;
+        var descCargo = document.forms["formulario"]["descCargo"].value;
+        var setor = document.forms["formulario"]["setor"].value;
+        var salario = document.forms["formulario"]["salario"].value;
+
+        if (nome === "" || cargo === "" || descCargo === "" || setor === "" || salario === "") {
+            alert("Preencha todos os campos corretamente.");
+            return false;
+        }
+
+        // Validar se o salário é um número
+        if (!validarNumero(salario)) {
+            alert("Digite apenas números no campo de salário.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarNumero(input) {
+        // Expressão regular para verificar se o input é um número
+        var regex = /^[0-9]+([,.][0-9]+)?$/;
+        return regex.test(input);
+    }
+</script>
+
+</body>
+</html>
